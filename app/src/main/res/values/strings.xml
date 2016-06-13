@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Consort</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_offer_ride">OfferRide</string>
+    <string name="title_activity_get_ride">GetRide</string>
+    <string name="title_activity_advertisment">advertisment</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_image_show">imageShow</string>
+    <string name="title_activity_notification_dialog">notification_dialog</string>
+</resources>
