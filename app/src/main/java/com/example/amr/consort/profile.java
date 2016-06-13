@@ -83,6 +83,8 @@ public class profile extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
+     //phone number here
+
                     Intent intent = new Intent(Intent.ACTION_CALL);
                     intent.setData(Uri.parse("tel:" + number));
                     if (ActivityCompat.checkSelfPermission(profile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -192,63 +194,12 @@ public class profile extends AppCompatActivity {
     }
 
     public void getData(){
-//        Bundle bundle=getIntent().getExtras();
-//        String user_id2=bundle.getString("profileId");
-        SharedPreferences sh=getSharedPreferences("profile", MODE_PRIVATE);
-        String user_id2=sh.getString("profileId", "nothing");
-        Toast.makeText(profile.this, user_id2, Toast.LENGTH_SHORT).show();
-        if(user_id2=="nothing"){
-            Toast.makeText(profile.this, "nothing", Toast.LENGTH_SHORT).show();
-            AQuery aq=new AQuery(this);
-            String url="http://192.168.43.99:8080/profile?userid="+user_id+"&chk=1";
-            aq.ajax(url, JSONObject.class, this, "jsonCallBack");
-
-        }else{
-            Toast.makeText(profile.this, "number", Toast.LENGTH_SHORT).show();
-            AQuery aq=new AQuery(this);
-            String url="http://192.168.43.99:8080/profile?userid="+user_id2+"&chk=1";
-            aq.ajax(url, JSONObject.class, this, "jsonCallBack");
-
-        }
-
-        sh2 = getSharedPreferences("profile",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sh2.edit();
-        editor.putString("profileId","nothing");
-        editor.commit();
+        //put your code here 
+        name.setText(u_name);gender.setText(u_gender);job.setText(u_job);
+        place.setText(u_address);age.setText(u_age);
+        ContentLisetner(u_phone,u_email);
     }
 
-    public void jsonCallBack(String url,JSONObject json,AjaxStatus status){
-        if(json!=null){
-            System.out.println("Json is not null");
-
-            try{
-
-                //deal with service
-                String results =json.getString("result");
-                JSONArray arr=new JSONArray(results);
-                for(int i=0; i<arr.length();i++) {
-                    JSONObject part=arr.getJSONObject(i);
-                    u_name = part.getString("name");
-                    u_password = part.getString("password");
-                    u_phone = part.getString("phone");
-                    u_email = part.getString("email");
-                    u_job = part.getString("job");
-                    u_address = part.getString("address");
-                    u_gender=part.getString("gender");
-                    u_age=part.getString("age");
-
-
-                }
-                name.setText(u_name);gender.setText(u_gender);job.setText(u_job);
-                place.setText(u_address);age.setText(u_age);
-                ContentLisetner(u_phone,u_email);
-            }catch(Exception ex){
-
-            }
-        }else{
-            System.out.println("JJJJJJJJJJJJJJJJJJ");
-        }
-    }
 
 }
 
